@@ -1506,64 +1506,222 @@ function EssayGrid() {
 /* ═══════════════════════════════════════════════════════════
    PATREON BAND — ink bg + gold/crimson/rainbow accents
 ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   PATREON BAND — real tiers from onceuponarecord Patreon page
+═══════════════════════════════════════════════════════════ */
+const PATREON_TIERS = [
+  {
+    name:    "The Tip Jar",
+    price:   "$3",
+    period:  "/ month",
+    desc:    "A great way to show support for the channel — thank you!",
+    accent:  C.gold,
+    joinUrl: "https://www.patreon.com/checkout/onceuponarecord?rid=26916039",
+    benefits: [
+      "Vote on which Disney films get reviewed next",
+      "Early ad-free access to new videos",
+      "Your name listed at the end of each video",
+    ],
+  },
+  {
+    name:    "The Big Tipper",
+    price:   "$5",
+    period:  "/ month",
+    desc:    "Sometimes 20% isn't enough — thank you so much!",
+    accent:  C.orange,
+    joinUrl: "https://www.patreon.com/checkout/onceuponarecord?rid=23394822",
+    featured: true,
+    benefits: [
+      "Vote on which Disney films get reviewed next",
+      "Early ad-free access to new videos",
+      "Your name listed at the end of each video",
+    ],
+  },
+  {
+    name:    "The Ardent Supporter",
+    price:   "$10",
+    period:  "/ month",
+    desc:    "Now things are getting serious — thank you so very, very much!",
+    accent:  C.crimson,
+    joinUrl: "https://www.patreon.com/checkout/onceuponarecord?rid=23394838",
+    benefits: [
+      "Add a Disney film to the voting (1 per month)",
+      "One (1) mp3 album download from Disney Recordland",
+      "Vote on which Disney films get reviewed next",
+      "Early ad-free access to new videos",
+      "Your name listed at the end of each video (special category)",
+    ],
+  },
+];
+
+function TierCard({ tier }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        flex: "1",
+        minWidth: "260px",
+        maxWidth: "340px",
+        background: tier.featured
+          ? `rgba(255,255,255,0.07)`
+          : `rgba(255,255,255,0.03)`,
+        border: `1px solid ${tier.featured ? tier.accent : "rgba(226,194,39,0.15)"}`,
+        borderTop: `3px solid ${tier.accent}`,
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        transform: hovered ? "translateY(-4px)" : "translateY(0)",
+        boxShadow: hovered ? `0 12px 40px rgba(0,0,0,0.4)` : "none",
+      }}
+    >
+      {/* Popular badge */}
+      {tier.featured && (
+        <div style={{
+          position: "absolute", top: "-1px", right: "1.5rem",
+          background: tier.accent,
+          padding: "3px 12px",
+          fontSize: "8px", letterSpacing: "0.18em", textTransform: "uppercase",
+          color: C.ink, fontFamily: "Cormorant Garamond, Georgia, serif", fontWeight: 700,
+        }}>
+          Popular
+        </div>
+      )}
+
+      {/* Header */}
+      <div style={{ padding: "1.75rem 1.75rem 1.25rem" }}>
+        <p style={{
+          fontFamily: "Cormorant Garamond, Georgia, serif",
+          fontSize: "1.05rem", fontStyle: "italic",
+          color: tier.accent, marginBottom: "1rem",
+          letterSpacing: "0.02em",
+        }}>
+          {tier.name}
+        </p>
+
+        {/* Price */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "0.75rem" }}>
+          <span style={{
+            fontFamily: "Cormorant Garamond, Georgia, serif",
+            fontSize: "3rem", fontWeight: 300, color: C.cream, lineHeight: 1,
+          }}>{tier.price}</span>
+          <span style={{
+            fontFamily: "Cormorant Garamond, Georgia, serif",
+            fontSize: "0.85rem", color: "rgba(247,240,220,0.45)", letterSpacing: "0.04em",
+          }}>{tier.period}</span>
+        </div>
+
+        <p style={{
+          fontFamily: "Cormorant Garamond, Georgia, serif",
+          fontSize: "0.88rem", fontStyle: "italic",
+          color: "rgba(247,240,220,0.5)", lineHeight: 1.6,
+          marginBottom: "1.5rem",
+        }}>
+          {tier.desc}
+        </p>
+
+        {/* Divider */}
+        <div style={{ width: "100%", height: "1px", background: `rgba(226,194,39,0.12)`, marginBottom: "1.5rem" }} />
+
+        {/* Benefits */}
+        <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.75rem", display: "flex", flexDirection: "column", gap: "10px" }}>
+          {tier.benefits.map((b, i) => (
+            <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: "2px" }}>
+                <circle cx="7" cy="7" r="6.5" stroke={tier.accent} strokeWidth="1" opacity="0.7"/>
+                <path d="M4 7L6 9L10 5" stroke={tier.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span style={{
+                fontFamily: "Cormorant Garamond, Georgia, serif",
+                fontSize: "0.9rem", color: "rgba(247,240,220,0.72)", lineHeight: 1.55,
+              }}>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Join button pinned to bottom */}
+      <div style={{ padding: "0 1.75rem 1.75rem", marginTop: "auto" }}>
+        <a
+          href={tier.joinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+            width: "100%", padding: "12px",
+            background: tier.featured ? tier.accent : "transparent",
+            border: `1px solid ${tier.accent}`,
+            color: tier.featured ? C.ink : tier.accent,
+            fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase",
+            textDecoration: "none",
+            fontFamily: "Cormorant Garamond, Georgia, serif",
+            fontWeight: tier.featured ? 700 : 400,
+            transition: "all 0.25s ease",
+          }}
+        >
+          <PatreonIcon size={10} color={tier.featured ? C.ink : tier.accent} />
+          Join for {tier.price}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function PatreonBand() {
   return (
-    <section style={{ background: C.ink, padding: "110px 2rem", textAlign: "center", position: "relative", overflow: "hidden" }}>
+    <section style={{ background: C.ink, padding: "90px 2rem 100px", position: "relative", overflow: "hidden" }}>
       {/* Rainbow top border strip */}
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "4px", background: `linear-gradient(90deg, ${C.navy}, ${C.crimson}, ${C.orange}, ${C.gold}, ${C.orange}, ${C.crimson}, ${C.navy})` }} />
 
       {/* Faint radial glow */}
-      <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: "800px", height: "600px", background: `radial-gradient(ellipse, rgba(226,194,39,0.07) 0%, transparent 70%)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translate(-50%,-50%)", width: "900px", height: "600px", background: `radial-gradient(ellipse, rgba(226,194,39,0.06) 0%, transparent 70%)`, pointerEvents: "none" }} />
 
-      {/* Logo */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
-        <Logo size={88} />
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.75rem" }}>
+          <Logo size={72} />
+        </div>
+
+        <span style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: C.gold, fontFamily: "Cormorant Garamond, Georgia, serif", display: "block", marginBottom: "1rem" }}>
+          Support the Channel
+        </span>
+
+        <h2 style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 300, fontStyle: "italic", color: C.cream, margin: "0 auto 1rem", maxWidth: "680px", lineHeight: 1.2 }}>
+          Help keep the records spinning
+        </h2>
+
+        <div style={{ width: "60px", height: "3px", background: `linear-gradient(90deg, ${C.crimson}, ${C.gold}, ${C.orange})`, margin: "0 auto 1.5rem", borderRadius: "2px" }} />
+
+        <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "1.05rem", color: "rgba(247,240,220,0.5)", maxWidth: "520px", margin: "0 auto", lineHeight: 1.85, fontWeight: 300, fontStyle: "italic" }}>
+          These essays take time, love, and a lot of rewatching. Every contribution helps bring more stories to light.
+        </p>
       </div>
 
-      <span style={{ fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: C.gold, fontFamily: "Cormorant Garamond, Georgia, serif", display: "block", marginBottom: "1.5rem" }}>
-        Support the Channel
-      </span>
-
-      <h2 style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 300, fontStyle: "italic", color: C.cream, margin: "0 auto 1.5rem", maxWidth: "680px", lineHeight: 1.2 }}>
-        Help keep the records spinning
-      </h2>
-
-      <div style={{ width: "60px", height: "3px", background: `linear-gradient(90deg, ${C.crimson}, ${C.gold}, ${C.orange})`, margin: "0 auto 2rem", borderRadius: "2px" }} />
-
-      <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "1.1rem", color: "rgba(247,240,220,0.55)", maxWidth: "480px", margin: "0 auto 3rem", lineHeight: 1.85, fontWeight: 300 }}>
-        These essays take time, love, and a lot of rewatching. Every contribution on Patreon helps bring more stories to light.
-      </p>
-
-      {/* Tier cards with navy/gold styling from the logo */}
-      <div style={{ display: "flex", gap: "1.5rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "3rem" }}>
-        {[
-          { tier: "Record Spinner", price: "$3 / mo", desc: "Early access to new essays", accent: C.gold },
-          { tier: "Film Scholar",   price: "$7 / mo", desc: "Behind-the-scenes notes & polls", accent: C.orange },
-          { tier: "Disney Archivist", price: "$15 / mo", desc: "Extended cuts & direct Q&A with Jay", accent: C.crimson },
-        ].map(t => (
-          <div key={t.tier} style={{
-            background: "rgba(255,255,255,0.04)",
-            border: `1px solid rgba(226,194,39,0.2)`,
-            borderTop: `3px solid ${t.accent}`,
-            padding: "1.75rem 1.5rem", minWidth: "180px", maxWidth: "220px", textAlign: "center",
-          }}>
-            <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "0.95rem", fontStyle: "italic", color: t.accent, marginBottom: "0.5rem" }}>{t.tier}</p>
-            <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "1.4rem", color: C.cream, fontWeight: 300, marginBottom: "0.75rem" }}>{t.price}</p>
-            <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "0.85rem", color: "rgba(247,240,220,0.45)", lineHeight: 1.6 }}>{t.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <a href={PATREON_URL} target="_blank" rel="noopener noreferrer" style={{
-        display: "inline-flex", alignItems: "center", gap: "10px",
-        padding: "15px 38px",
-        background: C.crimson,
-        color: "white", fontSize: "11px", letterSpacing: "0.16em",
-        textTransform: "uppercase", textDecoration: "none",
-        fontFamily: "Cormorant Garamond, Georgia, serif", fontWeight: 600,
+      {/* Tier cards */}
+      <div style={{
+        display: "flex", gap: "1.5rem",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        maxWidth: "1100px",
+        margin: "0 auto 3rem",
       }}>
-        <PatreonIcon size={12} /> Join on Patreon
-      </a>
+        {PATREON_TIERS.map(tier => <TierCard key={tier.name} tier={tier} />)}
+      </div>
+
+      {/* Browse all link */}
+      <div style={{ textAlign: "center" }}>
+        <a href={PATREON_URL} target="_blank" rel="noopener noreferrer" style={{
+          fontFamily: "Cormorant Garamond, Georgia, serif",
+          fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase",
+          color: "rgba(247,240,220,0.4)", textDecoration: "none",
+          borderBottom: "1px solid rgba(247,240,220,0.2)",
+          paddingBottom: "2px",
+        }}>
+          View membership page on Patreon →
+        </a>
+      </div>
 
       {/* Rainbow bottom strip */}
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "4px", background: `linear-gradient(90deg, ${C.navy}, ${C.crimson}, ${C.orange}, ${C.gold}, ${C.orange}, ${C.crimson}, ${C.navy})` }} />
