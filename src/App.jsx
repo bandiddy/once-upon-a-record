@@ -465,59 +465,159 @@ function PatreonIcon({ size = 12, color = "white" }) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   NAV
+   NAV — responsive: desktop horizontal / mobile stacked
 ═══════════════════════════════════════════════════════════ */
 function Nav({ heroVisible }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Close menu on nav link click
+  const close = () => setMenuOpen(false);
+
+  const bgSolid = `rgba(13,10,0,0.97)`;
+  const bgHero  = `linear-gradient(to bottom, rgba(22,22,80,0.45) 0%, transparent 100%)`;
+
+  const linkStyle = {
+    fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase",
+    color: "rgba(255,255,255,0.90)", textDecoration: "none",
+    fontFamily: "Cormorant Garamond, Georgia, serif",
+    padding: isMobile ? "10px 0" : "0",
+    display: "block",
+  };
+
+  const ytPill = {
+    display: "inline-flex", alignItems: "center", gap: "7px",
+    padding: isMobile ? "10px 20px" : "7px 15px",
+    background: "rgba(255,255,255,0.12)",
+    border: "1px solid rgba(255,255,255,0.55)",
+    borderRadius: "2px", textDecoration: "none",
+  };
+
+  const patPill = {
+    display: "inline-flex", alignItems: "center", gap: "7px",
+    padding: isMobile ? "10px 20px" : "7px 15px",
+    background: C.crimson, borderRadius: "2px", textDecoration: "none",
+    border: `1px solid ${C.crimson}`,
+  };
+
+  /* ── DESKTOP ── */
+  if (!isMobile) {
+    return (
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "0 2.5rem", height: "72px",
+        background: heroVisible ? bgHero : bgSolid,
+        backdropFilter: heroVisible ? "none" : "blur(14px)",
+        borderBottom: heroVisible ? "none" : `1px solid rgba(226,194,39,0.18)`,
+        transition: "background 0.5s ease, border 0.4s ease",
+      }}>
+        <a href="#top" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+          <Logo size={44} />
+        </a>
+        <div style={{ display: "flex", gap: "1.75rem", alignItems: "center" }}>
+          {["About", "Essays"].map(label => (
+            <a key={label} href={`#${label.toLowerCase()}`} style={linkStyle}>{label}</a>
+          ))}
+          <a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" style={ytPill}>
+            <YTIcon size={13} />
+            <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#FFFFFF", fontFamily: "Cormorant Garamond, Georgia, serif" }}>YouTube</span>
+          </a>
+          <a href={PATREON_URL} target="_blank" rel="noopener noreferrer" style={patPill}>
+            <PatreonIcon size={11} />
+            <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "white", fontFamily: "Cormorant Garamond, Georgia, serif" }}>Patreon</span>
+          </a>
+        </div>
+      </nav>
+    );
+  }
+
+  /* ── MOBILE ── */
   return (
-    <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-      display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "0 2.5rem", height: "72px",
-      background: heroVisible
-        ? "linear-gradient(to bottom, rgba(22,22,80,0.38) 0%, transparent 100%)"
-        : `rgba(13,10,0,0.96)`,
-      backdropFilter: heroVisible ? "none" : "blur(14px)",
-      borderBottom: heroVisible ? "none" : `1px solid rgba(226,194,39,0.18)`,
-      transition: "background 0.5s ease, border 0.4s ease",
-    }}>
-      {/* Left: logo + wordmark */}
-      <a href="#top" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-        <Logo size={44} />
-      </a>
-
-      {/* Right: nav links + CTA pills */}
-      <div style={{ display: "flex", gap: "1.75rem", alignItems: "center" }}>
-        {["About", "Essays"].map(label => (
-          <a key={label} href={`#${label.toLowerCase()}`} style={{
-            fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.92)", textDecoration: "none",
-            fontFamily: "Cormorant Garamond, Georgia, serif",
-          }}>{label}</a>
-        ))}
-
-        <a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" style={{
-          display: "inline-flex", alignItems: "center", gap: "7px",
-          padding: "7px 15px",
-          background: "rgba(255,255,255,0.12)",
-          border: "1px solid rgba(255,255,255,0.55)",
-          borderRadius: "2px", textDecoration: "none",
-        }}>
-          <YTIcon size={13} />
-          <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#FFFFFF", fontFamily: "Cormorant Garamond, Georgia, serif" }}>YouTube</span>
+    <>
+      {/* Mobile top bar — logo centred, hamburger right */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "0 1rem", height: "64px",
+        background: heroVisible && !menuOpen ? bgHero : bgSolid,
+        backdropFilter: heroVisible && !menuOpen ? "none" : "blur(14px)",
+        borderBottom: heroVisible && !menuOpen ? "none" : `1px solid rgba(226,194,39,0.18)`,
+        transition: "background 0.4s ease",
+      }}>
+        {/* Logo — centred */}
+        <a href="#top" onClick={close} style={{ display: "flex", alignItems: "center", textDecoration: "none", position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
+          <Logo size={40} />
         </a>
 
-        <a href={PATREON_URL} target="_blank" rel="noopener noreferrer" style={{
-          display: "inline-flex", alignItems: "center", gap: "7px",
-          padding: "7px 15px",
-          background: C.crimson,
-          borderRadius: "2px", textDecoration: "none",
-          border: `1px solid ${C.crimson}`,
+        {/* Hamburger — right side */}
+        <button
+          onClick={() => setMenuOpen(o => !o)}
+          style={{
+            position: "absolute", right: "1.25rem",
+            background: "none", border: "none", cursor: "pointer",
+            padding: "8px", display: "flex", flexDirection: "column",
+            gap: "5px", alignItems: "flex-end",
+          }}
+          aria-label="Toggle menu"
+        >
+          <span style={{ display: "block", width: menuOpen ? "22px" : "22px", height: "1.5px", background: C.gold, transition: "all 0.3s ease", transform: menuOpen ? "translateY(6.5px) rotate(45deg)" : "none" }}/>
+          <span style={{ display: "block", width: "16px", height: "1.5px", background: C.gold, transition: "all 0.3s ease", opacity: menuOpen ? 0 : 1 }}/>
+          <span style={{ display: "block", width: "22px", height: "1.5px", background: C.gold, transition: "all 0.3s ease", transform: menuOpen ? "translateY(-6.5px) rotate(-45deg)" : "none" }}/>
+        </button>
+      </nav>
+
+      {/* Mobile dropdown menu */}
+      <div style={{
+        position: "fixed", top: "64px", left: 0, right: 0, zIndex: 199,
+        background: bgSolid,
+        backdropFilter: "blur(14px)",
+        borderBottom: `1px solid rgba(226,194,39,0.18)`,
+        overflow: "hidden",
+        maxHeight: menuOpen ? "400px" : "0",
+        transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)",
+      }}>
+        <div style={{
+          display: "flex", flexDirection: "column", alignItems: "center",
+          padding: menuOpen ? "1.5rem 1.5rem 2rem" : "0 1.5rem",
+          gap: "0",
+          transition: "padding 0.3s ease",
         }}>
-          <PatreonIcon size={11} />
-          <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "white", fontFamily: "Cormorant Garamond, Georgia, serif" }}>Patreon</span>
-        </a>
+          {/* Text links */}
+          {["About", "Essays"].map(label => (
+            <a key={label} href={`#${label.toLowerCase()}`} onClick={close} style={{
+              ...linkStyle,
+              borderBottom: `1px solid rgba(226,194,39,0.1)`,
+              width: "100%", textAlign: "center",
+            }}>{label}</a>
+          ))}
+
+          {/* CTA buttons */}
+          <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.25rem", flexWrap: "wrap", justifyContent: "center", width: "100%" }}>
+            <a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" onClick={close} style={{ ...ytPill, flex: "1", justifyContent: "center", minWidth: "120px" }}>
+              <YTIcon size={13} />
+              <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#FFFFFF", fontFamily: "Cormorant Garamond, Georgia, serif" }}>YouTube</span>
+            </a>
+            <a href={PATREON_URL} target="_blank" rel="noopener noreferrer" onClick={close} style={{ ...patPill, flex: "1", justifyContent: "center", minWidth: "120px" }}>
+              <PatreonIcon size={11} />
+              <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "white", fontFamily: "Cormorant Garamond, Georgia, serif" }}>Patreon</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </nav>
+
+      {/* Backdrop tap-to-close */}
+      {menuOpen && (
+        <div onClick={close} style={{ position: "fixed", inset: 0, zIndex: 198, background: "transparent" }} />
+      )}
+    </>
   );
 }
 
