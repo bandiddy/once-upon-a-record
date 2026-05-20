@@ -31,70 +31,118 @@ const PATREON_URL = "https://www.patreon.com/onceuponarecord";
 
 /* ─── Data ────────────────────────────────────────────────── */
 
-/* ── SVG placeholder thumbnails — fully self-contained, no external URLs ── */
+/* ── SVG placeholder thumbnails — Disney-infused, fully self-contained ── */
+
+/* GOLDEN AGE 1 — Snow White's wishing well + record, golden forest */
 const SVG_GOLDEN_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="g1bg" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#4A3800"/><stop offset="100%" stop-color="#1A1200"/></radialGradient>
-    <radialGradient id="g1glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#E2C227" stop-opacity="0.25"/><stop offset="100%" stop-color="#E2C227" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g1glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#E2C227" stop-opacity="0.3"/><stop offset="100%" stop-color="#E2C227" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="600" height="400" fill="url(#g1bg)"/>
   <rect width="600" height="400" fill="url(#g1glow)"/>
-  <!-- film strip left -->
-  <rect x="20" y="0" width="60" height="400" fill="#0A0800" opacity="0.7"/>
-  <rect x="22" y="0" width="56" height="400" fill="none" stroke="#E2C227" stroke-width="1" opacity="0.3"/>
-  ${[30,80,130,180,230,280,330,380].map(y=>`<rect x="28" y="${y}" width="44" height="36" rx="2" fill="#E2C227" opacity="0.12"/>`).join('')}
-  <!-- film strip right -->
-  <rect x="520" y="0" width="60" height="400" fill="#0A0800" opacity="0.7"/>
-  ${[30,80,130,180,230,280,330,380].map(y=>`<rect x="528" y="${y}" width="44" height="36" rx="2" fill="#E2C227" opacity="0.12"/>`).join('')}
-  <!-- star cluster -->
-  ${[[300,80],[260,120],[340,110],[220,160],[380,150],[200,200],[400,190],[300,200]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${1+i%3}" fill="#E2C227" opacity="${0.3+i*0.08}"/>`).join('')}
-  <!-- large record -->
-  <circle cx="300" cy="230" r="130" fill="#1C1600" stroke="#E2C227" stroke-width="1.5" opacity="0.9"/>
-  <circle cx="300" cy="230" r="115" fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.3"/>
-  <circle cx="300" cy="230" r="95"  fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.25"/>
-  <circle cx="300" cy="230" r="75"  fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.2"/>
-  <circle cx="300" cy="230" r="50"  fill="#E2C227" opacity="0.85"/>
-  <circle cx="300" cy="230" r="32"  fill="#C0182A" opacity="0.9"/>
-  <circle cx="300" cy="230" r="10"  fill="#1C1600"/>
-  <!-- Golden Age text -->
-  <text x="300" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#E2C227" opacity="0.6" letter-spacing="4">GOLDEN AGE  ·  1937</text>
+  <!-- film strip borders -->
+  <rect x="0" y="0" width="55" height="400" fill="#080600" opacity="0.75"/>
+  <rect x="545" y="0" width="55" height="400" fill="#080600" opacity="0.75"/>
+  <rect x="8" y="20" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="8" y="80" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="8" y="140" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="8" y="200" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="8" y="260" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="8" y="320" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="553" y="20" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="553" y="80" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="553" y="140" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="553" y="200" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/><rect x="553" y="260" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <!-- enchanted forest trees — bolder -->
+  <polygon points="60,360 105,185 150,360" fill="#0D0A00" opacity="0.85"/>
+  <polygon points="95,360 145,165 195,360" fill="#0D0A00" opacity="0.8"/>
+  <polygon points="415,360 460,168 505,360" fill="#0D0A00" opacity="0.8"/>
+  <polygon points="448,360 492,185 536,360" fill="#0D0A00" opacity="0.85"/>
+  <!-- dwarfs cottage silhouette bottom left -->
+  <rect x="65" y="300" width="70" height="55" fill="#1A1000" stroke="#E2C227" stroke-width="0.8" opacity="0.7"/>
+  <polygon points="55,302 100,268 145,302" fill="#1A1000" stroke="#E2C227" stroke-width="0.8" opacity="0.7"/>
+  <rect x="90" y="318" width="20" height="28" fill="#0D0A00" opacity="0.8"/>
+  <rect x="70" y="308" width="16" height="14" rx="1" fill="#E2C227" opacity="0.12"/>
+  <rect x="112" y="308" width="16" height="14" rx="1" fill="#E2C227" opacity="0.12"/>
+  <!-- chimney with smoke -->
+  <rect x="120" y="255" width="12" height="22" fill="#1A1000" stroke="#E2C227" stroke-width="0.8" opacity="0.65"/>
+  <path d="M126 255 Q128 242 124 232 Q120 222 125 215" fill="none" stroke="#E2C227" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  <!-- Snow White wishing well — bigger and brighter -->
+  <rect x="240" y="255" width="120" height="80" rx="3" fill="#1C1600" stroke="#E2C227" stroke-width="1.5" opacity="0.9"/>
+  <ellipse cx="300" cy="255" rx="60" ry="16" fill="#1C1600" stroke="#E2C227" stroke-width="1.5" opacity="0.9"/>
+  <line x1="265" y1="255" x2="265" y2="188" stroke="#E2C227" stroke-width="1.5" opacity="0.75"/>
+  <line x1="335" y1="255" x2="335" y2="188" stroke="#E2C227" stroke-width="1.5" opacity="0.75"/>
+  <path d="M248 188 Q300 165 352 188" fill="none" stroke="#E2C227" stroke-width="2.5" opacity="0.8"/>
+  <line x1="300" y1="172" x2="300" y2="140" stroke="#E2C227" stroke-width="1.5" opacity="0.75"/>
+  <polygon points="278,140 300,118 322,140" fill="#E2C227" opacity="0.7"/>
+  <!-- wishing well bucket -->
+  <rect x="286" y="210" width="28" height="22" rx="2" fill="#2A1E00" stroke="#E2C227" stroke-width="1.2" opacity="0.9"/>
+  <path d="M286 210 Q300 202 314 210" fill="none" stroke="#E2C227" stroke-width="1" opacity="0.7"/>
+  <!-- poison apple — bold and vivid -->
+  <circle cx="300" cy="345" r="22" fill="#C0182A" opacity="0.7"/>
+  <path d="M296 323 Q300 312 306 316" fill="none" stroke="#A07000" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M298 316 Q292 308 286 312" fill="none" stroke="#2A4000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="310" cy="336" r="6" fill="#F0F0F0" opacity="0.18"/>
+  <!-- record beneath -->
+  <circle cx="300" cy="345" r="40" fill="none" stroke="#E2C227" stroke-width="0.8" opacity="0.3"/>
+  <!-- gold sparkles -->
+  <circle cx="200" cy="80"  r="2.5" fill="#E2C227" opacity="0.8"/>
+  <circle cx="380" cy="60"  r="2" fill="#E2C227" opacity="0.65"/>
+  <circle cx="450" cy="100" r="2.5" fill="#E2C227" opacity="0.7"/>
+  <circle cx="160" cy="130" r="2" fill="#E2C227" opacity="0.55"/>
+  <circle cx="420" cy="140" r="2" fill="#E2C227" opacity="0.6"/>
+  <path d="M210 110 L213 102 L218 110 L213 118 Z" fill="#E2C227" opacity="0.55"/>
+  <path d="M430 80 L433 72 L438 80 L433 88 Z" fill="#E2C227" opacity="0.5"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#E2C227" opacity="0.65" letter-spacing="4">GOLDEN AGE  ·  1937</text>
 </svg>`)}`;
 
+/* GOLDEN AGE 2 — Fantasia: sorcerer hat, enchanted brooms, magic */
 const SVG_GOLDEN_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="g2bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2A1E00"/><stop offset="100%" stop-color="#0E0A00"/></linearGradient>
   </defs>
   <rect width="600" height="400" fill="url(#g2bg)"/>
-  <!-- animation desk -->
-  <rect x="80" y="200" width="440" height="160" rx="4" fill="#1A1400" stroke="#E2C227" stroke-width="1" opacity="0.7"/>
-  <rect x="100" y="185" width="400" height="150" rx="3" fill="#F5E8B0" opacity="0.08"/>
-  <!-- pencils -->
-  <line x1="160" y1="180" x2="145" y2="310" stroke="#C8A010" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-  <polygon points="145,310 139,328 155,318" fill="#E2C227" opacity="0.7"/>
-  <line x1="200" y1="175" x2="188" y2="310" stroke="#A07830" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
-  <!-- sketch lines on paper -->
-  <line x1="220" y1="210" x2="359" y2="210" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <line x1="220" y1="225" x2="331" y2="225" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <line x1="220" y1="240" x2="369" y2="240" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <line x1="220" y1="255" x2="340" y2="255" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <line x1="220" y1="270" x2="346" y2="270" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <line x1="220" y1="285" x2="365" y2="285" stroke="#E2C227" stroke-width="1" opacity="0.15"/>
-  <circle cx="480" cy="80" r="12" fill="#E2C227" opacity="0.7"/>
-  <line x1="480" y1="80" x2="520" y2="80"  stroke="#E2C227" stroke-width="1.5" opacity="0.15"/>
-  <line x1="480" y1="80" x2="515" y2="100" stroke="#E2C227" stroke-width="1.5" opacity="0.18"/>
-  <line x1="480" y1="80" x2="500" y2="115" stroke="#E2C227" stroke-width="1.5" opacity="0.21"/>
-  <line x1="480" y1="80" x2="480" y2="120" stroke="#E2C227" stroke-width="1.5" opacity="0.24"/>
-  <line x1="480" y1="80" x2="460" y2="115" stroke="#E2C227" stroke-width="1.5" opacity="0.27"/>
-  <line x1="480" y1="80" x2="445" y2="100" stroke="#E2C227" stroke-width="1.5" opacity="0.30"/>
-  <line x1="480" y1="80" x2="440" y2="80"  stroke="#E2C227" stroke-width="1.5" opacity="0.33"/>
-  <line x1="480" y1="80" x2="445" y2="60"  stroke="#E2C227" stroke-width="1.5" opacity="0.36"/>
-  <line x1="480" y1="80" x2="460" y2="45"  stroke="#E2C227" stroke-width="1.5" opacity="0.39"/>
-  <line x1="480" y1="80" x2="480" y2="40"  stroke="#E2C227" stroke-width="1.5" opacity="0.42"/>
-  <line x1="480" y1="80" x2="500" y2="45"  stroke="#E2C227" stroke-width="1.5" opacity="0.45"/>
-  <line x1="480" y1="80" x2="515" y2="60"  stroke="#E2C227" stroke-width="1.5" opacity="0.48"/>
-  <text x="300" y="375" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#E2C227" opacity="0.55" letter-spacing="4">THE ANIMATOR'S DESK</text>
+  <!-- Sorcerer hat — large centred -->
+  <polygon points="300,18 248,170 352,170" fill="#16165A" stroke="#E2C227" stroke-width="2" opacity="0.95"/>
+  <ellipse cx="300" cy="172" rx="66" ry="16" fill="#16165A" stroke="#E2C227" stroke-width="2" opacity="0.95"/>
+  <line x1="252" y1="148" x2="348" y2="148" stroke="#E2C227" stroke-width="2" opacity="0.8"/>
+  <path d="M277 65 L280 56 L283 65 L280 74 Z" fill="#E2C227" opacity="0.9"/>
+  <circle cx="310" cy="88" r="4" fill="#E2C227" opacity="0.88"/>
+  <path d="M274 105 L277 97 L280 105 L277 113 Z" fill="#E2C227" opacity="0.82"/>
+  <circle cx="318" cy="128" r="3" fill="#E2C227" opacity="0.78"/>
+  <!-- magic burst from tip -->
+  <line x1="300" y1="18" x2="300" y2="0"  stroke="#E2C227" stroke-width="2" opacity="0.7"/>
+  <line x1="300" y1="18" x2="326" y2="2"  stroke="#E2C227" stroke-width="2" opacity="0.65"/>
+  <line x1="300" y1="18" x2="274" y2="2"  stroke="#E2C227" stroke-width="2" opacity="0.65"/>
+  <circle cx="300" cy="0"  r="4" fill="#E2C227" opacity="0.9"/>
+  <circle cx="328" cy="0"  r="3" fill="#E2C227" opacity="0.82"/>
+  <circle cx="272" cy="0"  r="3" fill="#E2C227" opacity="0.82"/>
+  <!-- enchanted broom left -->
+  <rect x="148" y="200" width="10" height="148" rx="4" fill="#C8A010" opacity="0.85"/>
+  <rect x="126" y="212" width="14" height="20" rx="2" fill="#7FA8C4" opacity="0.7"/>
+  <rect x="158" y="212" width="14" height="20" rx="2" fill="#7FA8C4" opacity="0.7"/>
+  <line x1="133" y1="212" x2="148" y2="196" stroke="#C8A010" stroke-width="2" opacity="0.7"/>
+  <line x1="165" y1="212" x2="153" y2="196" stroke="#C8A010" stroke-width="2" opacity="0.7"/>
+  <ellipse cx="153" cy="350" rx="24" ry="8" fill="#A07000" opacity="0.75"/>
+  <line x1="130" y1="346" x2="176" y2="354" stroke="#7A5000" stroke-width="1.5" opacity="0.65"/>
+  <line x1="134" y1="352" x2="172" y2="358" stroke="#7A5000" stroke-width="1.2" opacity="0.58"/>
+  <path d="M124 222 Q110 236 114 252" fill="none" stroke="#7FA8C4" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <!-- enchanted broom right -->
+  <rect x="444" y="200" width="10" height="148" rx="4" fill="#C8A010" opacity="0.8"/>
+  <rect x="422" y="212" width="14" height="20" rx="2" fill="#7FA8C4" opacity="0.65"/>
+  <rect x="454" y="212" width="14" height="20" rx="2" fill="#7FA8C4" opacity="0.65"/>
+  <ellipse cx="449" cy="350" rx="24" ry="8" fill="#A07000" opacity="0.7"/>
+  <line x1="426" y1="346" x2="472" y2="354" stroke="#7A5000" stroke-width="1.5" opacity="0.6"/>
+  <!-- water swirl at bottom -->
+  <path d="M80 370 Q150 355 220 370 Q290 385 360 370 Q430 355 520 370" fill="none" stroke="#7FA8C4" stroke-width="2" opacity="0.35"/>
+  <path d="M80 382 Q160 368 240 382 Q320 396 400 382 Q480 368 530 382" fill="none" stroke="#7FA8C4" stroke-width="1.5" opacity="0.25"/>
+  <!-- animator desk suggestion -->
+  <rect x="195" y="265" width="210" height="90" rx="3" fill="#1A1400" stroke="#E2C227" stroke-width="0.8" opacity="0.5"/>
+  <line x1="215" y1="278" x2="348" y2="278" stroke="#E2C227" stroke-width="0.7" opacity="0.12"/>
+  <line x1="215" y1="291" x2="338" y2="291" stroke="#E2C227" stroke-width="0.7" opacity="0.12"/>
+  <line x1="215" y1="248" x2="200" y2="348" stroke="#C8A010" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <polygon points="200,348 194,366 210,356" fill="#E2C227" opacity="0.65"/>
+  <circle cx="460" cy="70" r="2.5" fill="#E2C227" opacity="0.62"/>
+  <circle cx="120" cy="92" r="2"   fill="#E2C227" opacity="0.55"/>
+  <circle cx="510" cy="130" r="2"  fill="#E2C227" opacity="0.5"/>
+  <circle cx="78"  cy="145" r="2"  fill="#E2C227" opacity="0.5"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#E2C227" opacity="0.65" letter-spacing="4">FANTASIA  ·  1940</text>
 </svg>`)}`;
 
+/* SILVER AGE 1 — Cinderella's castle on screen + cinema seats */
 const SVG_SILVER_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="s1bg" cx="50%" cy="60%" r="80%"><stop offset="0%" stop-color="#0A1828"/><stop offset="100%" stop-color="#040810"/></radialGradient>
@@ -102,29 +150,98 @@ const SVG_SILVER_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   </defs>
   <rect width="600" height="400" fill="url(#s1bg)"/>
   <rect width="600" height="400" fill="url(#projbeam)"/>
-  <!-- cinema seats rows -->
-  ${[280,310,340,370].map((y,row)=>
-    Array.from({length:10},(_,i)=>`<rect x="${60+i*52}" y="${y}" width="38" height="24" rx="6" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="${0.4+row*0.1}"/>`).join('')
-  ).join('')}
-  <!-- screen glow at top -->
-  <rect x="60" y="40" width="480" height="180" rx="4" fill="#7FA8C4" opacity="0.06"/>
-  <rect x="60" y="40" width="480" height="180" rx="4" fill="none" stroke="#7FA8C4" stroke-width="1" opacity="0.3"/>
-  <!-- projector beam lines -->
-  <line x1="80" y1="100" x2="540" y2="40"  stroke="#7FA8C4" stroke-width="0.5" opacity="0.12"/>
-  <line x1="80" y1="120" x2="540" y2="220" stroke="#7FA8C4" stroke-width="0.5" opacity="0.12"/>
-  <!-- dust motes in beam -->
-  ${[[150,90],[200,110],[280,85],[350,105],[420,95],[480,88]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.5" fill="#7FA8C4" opacity="0.4"/>`).join('')}
-  <text x="300" y="386" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#7FA8C4" opacity="0.55" letter-spacing="4">SILVER AGE  ·  1950</text>
+  <!-- cinema screen frame -->
+  <rect x="60" y="30" width="480" height="210" rx="3" fill="#7FA8C4" fill-opacity="0.05" stroke="#7FA8C4" stroke-width="1" opacity="0.3"/>
+  <!-- Cinderella castle — bold silhouette on screen -->
+  <!-- castle glow backdrop -->
+  <ellipse cx="300" cy="165" rx="155" ry="100" fill="#7FA8C4" opacity="0.07"/>
+  <!-- main keep -->
+  <rect x="238" y="128" width="124" height="102" fill="#7FA8C4" opacity="0.38"/>
+  <!-- centre main spire — tall and prominent -->
+  <polygon points="300,38 282,128 318,128" fill="#7FA8C4" opacity="0.72"/>
+  <!-- centre spire tip flag -->
+  <line x1="300" y1="38" x2="300" y2="22" stroke="#7FA8C4" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="300,22 312,30 300,38" fill="#7FA8C4" opacity="0.65"/>
+  <!-- left main tower -->
+  <rect x="188" y="150" width="52" height="80" fill="#7FA8C4" opacity="0.32"/>
+  <polygon points="214,88 200,150 228,150" fill="#7FA8C4" opacity="0.58"/>
+  <line x1="214" y1="88" x2="214" y2="74" stroke="#7FA8C4" stroke-width="1.5" opacity="0.62"/>
+  <!-- right main tower -->
+  <rect x="358" y="150" width="52" height="80" fill="#7FA8C4" opacity="0.32"/>
+  <polygon points="384,88 370,150 398,150" fill="#7FA8C4" opacity="0.58"/>
+  <line x1="384" y1="88" x2="384" y2="74" stroke="#7FA8C4" stroke-width="1.5" opacity="0.62"/>
+  <!-- outer left turret -->
+  <rect x="146" y="168" width="44" height="62" fill="#7FA8C4" opacity="0.26"/>
+  <polygon points="168,118 155,168 181,168" fill="#7FA8C4" opacity="0.46"/>
+  <!-- outer right turret -->
+  <rect x="408" y="168" width="44" height="62" fill="#7FA8C4" opacity="0.26"/>
+  <polygon points="430,118 417,168 443,168" fill="#7FA8C4" opacity="0.46"/>
+  <!-- castle base wall -->
+  <rect x="146" y="228" width="308" height="14" fill="#7FA8C4" opacity="0.38"/>
+  <!-- battlements on top of keep -->
+  <rect x="242" y="120" width="12" height="10" fill="#7FA8C4" opacity="0.45"/>
+  <rect x="262" y="120" width="12" height="10" fill="#7FA8C4" opacity="0.45"/>
+  <rect x="326" y="120" width="12" height="10" fill="#7FA8C4" opacity="0.45"/>
+  <rect x="346" y="120" width="12" height="10" fill="#7FA8C4" opacity="0.45"/>
+  <!-- castle gate arch — bigger -->
+  <path d="M272 230 Q300 205 328 230" fill="none" stroke="#7FA8C4" stroke-width="2" opacity="0.58"/>
+  <rect x="283" y="214" width="34" height="28" fill="#0A1828" opacity="0.6"/>
+  <!-- windows lit with silver glow -->
+  <rect x="256" y="148" width="16" height="20" rx="2" fill="#7FA8C4" opacity="0.22"/>
+  <rect x="328" y="148" width="16" height="20" rx="2" fill="#7FA8C4" opacity="0.22"/>
+  <!-- moon behind castle -->
+  <circle cx="300" cy="50" r="28" fill="#7FA8C4" opacity="0.08"/>
+  <circle cx="300" cy="50" r="24" fill="none" stroke="#7FA8C4" stroke-width="1" opacity="0.2"/>
+  <!-- projector beam -->
+  <line x1="80" y1="100" x2="540" y2="40"  stroke="#7FA8C4" stroke-width="0.5" opacity="0.1"/>
+  <line x1="80" y1="120" x2="540" y2="240" stroke="#7FA8C4" stroke-width="0.5" opacity="0.1"/>
+  <!-- dust motes -->
+  <circle cx="150" cy="90" r="1.5" fill="#7FA8C4" opacity="0.4"/><circle cx="220" cy="80" r="1.5" fill="#7FA8C4" opacity="0.35"/><circle cx="320" cy="75" r="1.5" fill="#7FA8C4" opacity="0.4"/><circle cx="420" cy="85" r="1.5" fill="#7FA8C4" opacity="0.35"/><circle cx="500" cy="78" r="1.5" fill="#7FA8C4" opacity="0.4"/>
+  <!-- cinema seats -->
+  <rect x="60"  y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="112" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="164" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="216" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="268" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="320" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="372" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="424" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="476" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="528" y="290" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.45"/>
+  <rect x="60"  y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="112" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="164" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="216" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="268" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="320" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="372" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="424" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="476" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="528" y="322" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.5"/>
+  <rect x="60"  y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="112" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="164" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="216" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="268" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="320" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="372" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="424" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="476" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <rect x="528" y="354" width="38" height="22" rx="5" fill="#0A1828" stroke="#7FA8C4" stroke-width="1" opacity="0.58"/>
+  <!-- shooting star -->
+  <line x1="450" y1="50" x2="510" y2="15" stroke="#7FA8C4" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="450" cy="50" r="2" fill="#7FA8C4" opacity="0.6"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#7FA8C4" opacity="0.55" letter-spacing="4">SILVER AGE  ·  1950</text>
 </svg>`)}`;
 
+/* SILVER AGE 2 — Sleeping Beauty tower + film projector */
 const SVG_SILVER_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="s2bg" cx="30%" cy="30%" r="90%"><stop offset="0%" stop-color="#0E1E30"/><stop offset="100%" stop-color="#04080E"/></radialGradient>
   </defs>
   <rect width="600" height="400" fill="url(#s2bg)"/>
-  <!-- film projector body -->
+  <!-- projector body -->
   <rect x="60" y="80" width="120" height="200" rx="8" fill="#0A1420" stroke="#7FA8C4" stroke-width="1.5" opacity="0.8"/>
-  <!-- reels -->
   <circle cx="120" cy="130" r="38" fill="none" stroke="#7FA8C4" stroke-width="2" opacity="0.7"/>
   <circle cx="120" cy="130" r="25" fill="none" stroke="#7FA8C4" stroke-width="1" opacity="0.4"/>
   <circle cx="120" cy="130" r="8"  fill="#7FA8C4" opacity="0.6"/>
@@ -146,15 +263,41 @@ const SVG_SILVER_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   <line x1="120" y1="240" x2="101" y2="221" stroke="#7FA8C4" stroke-width="1" opacity="0.4"/>
   <line x1="120" y1="240" x2="120" y2="213" stroke="#7FA8C4" stroke-width="1" opacity="0.4"/>
   <line x1="120" y1="240" x2="139" y2="221" stroke="#7FA8C4" stroke-width="1" opacity="0.4"/>
+  <ellipse cx="185" cy="180" rx="22" ry="22" fill="#050E18" stroke="#7FA8C4" stroke-width="2" opacity="0.9"/>
+  <ellipse cx="185" cy="180" rx="14" ry="14" fill="#7FA8C4" opacity="0.15"/>
+  <!-- projection beam -->
+  <polygon points="207,168 560,60 560,300 207,192" fill="#7FA8C4" opacity="0.04"/>
+  <!-- Sleeping Beauty tower on the projected screen -->
+  <!-- tower body -->
+  <rect x="350" y="100" width="70" height="180" fill="#7FA8C4" fill-opacity="0.12" stroke="#7FA8C4" stroke-width="0.8" opacity="0.3"/>
+  <!-- conical tower roof -->
+  <polygon points="385,48 340,100 430,100" fill="#7FA8C4" opacity="0.22"/>
+  <!-- tower window -->
+  <path d="M370 155 Q385 140 400 155 L400 180 L370 180 Z" fill="#7FA8C4" opacity="0.18"/>
+  <!-- tower battlements -->
+  <rect x="345" y="90"  width="12" height="14" fill="#7FA8C4" opacity="0.22"/>
+  <rect x="365" y="90"  width="12" height="14" fill="#7FA8C4" opacity="0.22"/>
+  <rect x="385" y="90"  width="12" height="14" fill="#7FA8C4" opacity="0.22"/>
+  <rect x="405" y="90"  width="12" height="14" fill="#7FA8C4" opacity="0.22"/>
+  <!-- thorny vines on tower (Sleeping Beauty reference) -->
+  <path d="M340 150 Q320 170 330 190 Q310 210 320 230" fill="none" stroke="#7FA8C4" stroke-width="1.5" opacity="0.25"/>
+  <path d="M430 160 Q450 180 440 200 Q460 220 450 240" fill="none" stroke="#7FA8C4" stroke-width="1.5" opacity="0.25"/>
+  <!-- film strip -->
+  <rect x="250" y="160" width="220" height="80" fill="none" stroke="#7FA8C4" stroke-width="0.5" opacity="0.2"/>
   <rect x="260" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
   <rect x="295" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
   <rect x="330" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
   <rect x="365" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
   <rect x="400" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
   <rect x="435" y="168" width="26" height="64" rx="1" fill="#7FA8C4" opacity="0.06"/>
-  <text x="300" y="386" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#7FA8C4" opacity="0.55" letter-spacing="4">THE SILVER SCREEN</text>
+  <!-- stars -->
+  <circle cx="500" cy="40" r="2"   fill="#7FA8C4" opacity="0.5"/>
+  <circle cx="540" cy="80" r="1.5" fill="#7FA8C4" opacity="0.4"/>
+  <circle cx="480" cy="70" r="1.5" fill="#7FA8C4" opacity="0.45"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#7FA8C4" opacity="0.55" letter-spacing="4">SLEEPING BEAUTY  ·  1959</text>
 </svg>`)}`;
 
+/* BRONZE AGE 1 — Fox and Hound / Aristocats record + turntable */
 const SVG_BRONZE_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="b1bg" cx="50%" cy="50%" r="75%"><stop offset="0%" stop-color="#2A1800"/><stop offset="100%" stop-color="#0E0800"/></radialGradient>
@@ -162,7 +305,7 @@ const SVG_BRONZE_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   </defs>
   <rect width="600" height="400" fill="url(#b1bg)"/>
   <rect width="600" height="400" fill="url(#b1warm)"/>
-  <!-- vinyl records stacked -->
+  <!-- vinyl record -->
   <ellipse cx="300" cy="240" rx="160" ry="20" fill="#0E0800" opacity="0.8"/>
   <circle cx="300" cy="215" r="140" fill="#1A1000" stroke="#A07040" stroke-width="1.5" opacity="0.9"/>
   <circle cx="300" cy="215" r="120" fill="none" stroke="#A07040" stroke-width="0.5" opacity="0.3"/>
@@ -171,15 +314,40 @@ const SVG_BRONZE_1 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   <circle cx="300" cy="215" r="55"  fill="#E8641A" opacity="0.75"/>
   <circle cx="300" cy="215" r="35"  fill="#A07040" opacity="0.9"/>
   <circle cx="300" cy="215" r="12"  fill="#0E0800"/>
-  <!-- second record behind -->
-  <circle cx="340" cy="225" r="135" fill="none" stroke="#A07040" stroke-width="1" opacity="0.3"/>
+  <!-- second record ghost -->
+  <circle cx="340" cy="225" r="135" fill="none" stroke="#A07040" stroke-width="1" opacity="0.25"/>
   <!-- turntable arm -->
   <line x1="430" y1="90" x2="320" y2="190" stroke="#C89060" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
   <circle cx="430" cy="90" r="10" fill="#A07040" opacity="0.8"/>
   <circle cx="318" cy="195" r="5" fill="#E8641A" opacity="0.9"/>
-  <text x="300" y="386" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#A07040" opacity="0.6" letter-spacing="4">BRONZE AGE  ·  1970</text>
+  <!-- Fox silhouette — bolder, left side -->
+  <ellipse cx="108" cy="118" rx="38" ry="24" fill="#E8641A" opacity="0.62"/>
+  <circle cx="140" cy="102" r="20" fill="#E8641A" opacity="0.65"/>
+  <polygon points="132,86 126,62 145,80" fill="#E8641A" opacity="0.62"/>
+  <polygon points="146,84 152,60 160,80" fill="#E8641A" opacity="0.62"/>
+  <path d="M72 122 Q48 104 52 82 Q56 62 74 72" fill="none" stroke="#E8641A" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
+  <circle cx="74" cy="72" r="11" fill="#FAE8D0" opacity="0.35"/>
+  <!-- white chest patch -->
+  <ellipse cx="128" cy="115" rx="10" ry="8" fill="#FAE8D0" opacity="0.22"/>
+  <!-- Hound silhouette — right side, bigger -->
+  <ellipse cx="478" cy="120" rx="42" ry="22" fill="#A07040" opacity="0.55"/>
+  <circle cx="512" cy="105" r="21" fill="#A07040" opacity="0.58"/>
+  <path d="M502 104 Q492 128 496 142" fill="#A07040" opacity="0.52" stroke="none"/>
+  <path d="M518 104 Q528 128 524 142" fill="#A07040" opacity="0.52" stroke="none"/>
+  <!-- hound nose -->
+  <circle cx="522" cy="108" r="4" fill="#5A3010" opacity="0.5"/>
+  <!-- forest floor -->
+  <rect x="60" y="150" width="200" height="4" rx="2" fill="#A07040" opacity="0.3"/>
+  <rect x="390" y="155" width="180" height="4" rx="2" fill="#E8641A" opacity="0.28"/>
+  <!-- trees behind animals -->
+  <polygon points="60,360 80,200 100,360" fill="#0E0800" opacity="0.5"/>
+  <polygon points="500,360 520,195 540,360" fill="#0E0800" opacity="0.5"/>
+  <!-- friendship heart between them — subtle -->
+  <path d="M270 130 Q300 110 330 130 Q350 145 300 175 Q250 145 270 130 Z" fill="#E8641A" opacity="0.12"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#A07040" opacity="0.6" letter-spacing="4">BRONZE AGE  ·  1970</text>
 </svg>`)}`;
 
+/* BRONZE AGE 2 — The Great Mouse Detective / VHS + magnifying glass */
 const SVG_BRONZE_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="b2bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E1000"/><stop offset="100%" stop-color="#0A0600"/></linearGradient>
@@ -188,7 +356,7 @@ const SVG_BRONZE_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   <!-- VHS tape body -->
   <rect x="140" y="120" width="320" height="200" rx="10" fill="#0E0800" stroke="#A07040" stroke-width="2" opacity="0.9"/>
   <rect x="160" y="140" width="280" height="100" rx="4" fill="#1A1000" stroke="#A07040" stroke-width="1" opacity="0.5"/>
-  <!-- reels inside -->
+  <!-- reels -->
   <circle cx="230" cy="190" r="38" fill="#0A0600" stroke="#A07040" stroke-width="1.5" opacity="0.8"/>
   <line x1="230" y1="190" x2="262" y2="190" stroke="#A07040" stroke-width="1" opacity="0.4"/>
   <line x1="230" y1="190" x2="253" y2="213" stroke="#A07040" stroke-width="1" opacity="0.4"/>
@@ -209,13 +377,41 @@ const SVG_BRONZE_2 = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0
   <line x1="370" y1="190" x2="370" y2="158" stroke="#A07040" stroke-width="1" opacity="0.4"/>
   <line x1="370" y1="190" x2="393" y2="167" stroke="#A07040" stroke-width="1" opacity="0.4"/>
   <circle cx="370" cy="190" r="10" fill="#A07040" opacity="0.6"/>
+  <!-- tape window -->
   <rect x="252" y="158" width="96" height="64" rx="3" fill="#050300" stroke="#A07040" stroke-width="1" opacity="0.7"/>
+  <!-- VHS label lines -->
   <rect x="155" y="248" width="290" height="55" rx="3" fill="#E8641A" opacity="0.12"/>
   <rect x="155" y="248" width="290" height="55" rx="3" fill="none" stroke="#E8641A" stroke-width="0.5" opacity="0.4"/>
   <line x1="170" y1="262" x2="430" y2="262" stroke="#A07040" stroke-width="0.5" opacity="0.3"/>
   <line x1="170" y1="272" x2="430" y2="272" stroke="#A07040" stroke-width="0.5" opacity="0.3"/>
   <line x1="170" y1="282" x2="430" y2="282" stroke="#A07040" stroke-width="0.5" opacity="0.3"/>
-  <text x="300" y="386" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#A07040" opacity="0.6" letter-spacing="4">BRONZE AGE  ·  1988</text>
+  <!-- Magnifying glass (Great Mouse Detective reference) -->
+  <circle cx="490" cy="90" r="42" fill="none" stroke="#E8641A" stroke-width="3" opacity="0.6"/>
+  <circle cx="490" cy="90" r="38" fill="none" stroke="#E8641A" stroke-width="0.8" opacity="0.2"/>
+  <!-- glass interior tint -->
+  <circle cx="490" cy="90" r="37" fill="#E8641A" opacity="0.04"/>
+  <!-- handle -->
+  <line x1="522" y1="122" x2="555" y2="158" stroke="#E8641A" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+  <line x1="519" y1="125" x2="552" y2="161" stroke="#C89060" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+  <!-- Basil the Great Mouse Detective inside magnifying glass -->
+  <ellipse cx="488" cy="100" rx="20" ry="15" fill="#A07040" opacity="0.72"/>
+  <circle cx="503" cy="82" r="14" fill="#A07040" opacity="0.75"/>
+  <circle cx="496" cy="70" r="8" fill="#A07040" opacity="0.68"/>
+  <circle cx="512" cy="68" r="8" fill="#A07040" opacity="0.68"/>
+  <path d="M468 108 Q450 116 453 132" fill="none" stroke="#A07040" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+  <!-- detective hat — deerstalker -->
+  <ellipse cx="503" cy="70" rx="17" ry="6" fill="#E8641A" opacity="0.65"/>
+  <rect x="488" y="60" width="30" height="14" rx="2" fill="#E8641A" opacity="0.65"/>
+  <polygon points="488,60 481,52 496,60" fill="#E8641A" opacity="0.6"/>
+  <polygon points="518,60 525,52 510,60" fill="#E8641A" opacity="0.6"/>
+  <!-- monocle on mouse -->
+  <circle cx="509" cy="84" r="5" fill="none" stroke="#C8A010" stroke-width="1.5" opacity="0.7"/>
+  <!-- small stars scattered -->
+  <circle cx="80"  cy="60"  r="1.5" fill="#A07040" opacity="0.4"/>
+  <circle cx="120" cy="90"  r="1.5" fill="#E8641A" opacity="0.35"/>
+  <circle cx="550" cy="200" r="1.5" fill="#A07040" opacity="0.4"/>
+  <circle cx="100" cy="340" r="1.5" fill="#E8641A" opacity="0.3"/>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#A07040" opacity="0.6" letter-spacing="4">BRONZE AGE  ·  1986</text>
 </svg>`)}`;
 
 const ESSAYS = [
@@ -319,7 +515,7 @@ const HERO_SLIDES = [
   <circle cx="225" cy="758" r="28" fill="#060200" stroke="#A07040" stroke-width="1" opacity="0.7"/>
   <circle cx="155" cy="758" r="8" fill="#A07040" opacity="0.6"/>
   <circle cx="225" cy="758" r="8" fill="#A07040" opacity="0.6"/>
-  <rect x="90" y="808" width="220" height="40" rx="3" fill="#E8641A" opacity="0.1" stroke="#E8641A" stroke-width="0.5" opacity="0.3"/>
+  <rect x="90" y="808" width="220" height="40" rx="3" fill="#E8641A" fill-opacity="0.1" stroke="#E8641A" stroke-width="0.5" opacity="0.3"/>
   <!-- second tape -->
   <rect x="100" y="680" width="240" height="30" rx="4" fill="#0E0800" stroke="#A07040" stroke-width="1" opacity="0.5"/>
   <text x="900" y="960" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#A07040" opacity="0.35" letter-spacing="12">BRONZE AGE  ·  1970 – 1988</text>
@@ -909,11 +1105,11 @@ function StoryBlock() {
 const ERA_SCENE_GOLD = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="gbg" cx="50%" cy="35%" r="75%"><stop offset="0%" stop-color="#4A3200"/><stop offset="100%" stop-color="#100C00"/></radialGradient>
-    <radialGradient id="gglow" cx="50%" cy="30%" r="40%"><stop offset="0%" stop-color="#E2C227" stop-opacity="0.18"/><stop offset="100%" stop-color="#E2C227" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gglow" cx="50%" cy="30%" r="40%"><stop offset="0%" stop-color="#E2C227" stop-opacity="0.22"/><stop offset="100%" stop-color="#E2C227" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="800" height="900" fill="url(#gbg)"/>
   <rect width="800" height="900" fill="url(#gglow)"/>
-  <!-- stars -->
+  <!-- stars scattered -->
   <circle cx="100" cy="80"  r="2"   fill="#E2C227" opacity="0.7"/>
   <circle cx="240" cy="50"  r="1.5" fill="#E2C227" opacity="0.5"/>
   <circle cx="400" cy="70"  r="2.5" fill="#E2C227" opacity="0.8"/>
@@ -921,37 +1117,143 @@ const ERA_SCENE_GOLD = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0
   <circle cx="700" cy="90"  r="2"   fill="#E2C227" opacity="0.7"/>
   <circle cx="150" cy="140" r="1.5" fill="#E2C227" opacity="0.4"/>
   <circle cx="650" cy="120" r="1.5" fill="#E2C227" opacity="0.5"/>
-  <!-- film strip left border -->
+  <circle cx="320" cy="55"  r="1.5" fill="#E2C227" opacity="0.45"/>
+  <circle cx="480" cy="100" r="1.5" fill="#E2C227" opacity="0.4"/>
+  <!-- film strip left -->
   <rect x="0" y="0" width="55" height="900" fill="#080600" opacity="0.8"/>
   <rect x="3" y="0" width="49" height="900" fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.25"/>
-  ${[20,80,140,200,260,320,380,440,500,560,620,680,740,800,860].map(y=>`<rect x="8" y="${y}" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>`).join('')}
-  <!-- film strip right border -->
+  <rect x="8" y="20"  width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="80"  width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="140" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="200" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="260" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="320" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="380" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="440" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="500" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="560" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="620" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="680" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="740" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="8" y="800" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <!-- film strip right -->
   <rect x="745" y="0" width="55" height="900" fill="#080600" opacity="0.8"/>
-  ${[20,80,140,200,260,320,380,440,500,560,620,680,740,800,860].map(y=>`<rect x="753" y="${y}" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>`).join('')}
+  <rect x="753" y="20"  width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="80"  width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="140" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="200" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="260" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="320" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="380" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="440" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="500" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="560" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="620" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="680" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <rect x="753" y="740" width="39" height="48" rx="2" fill="#E2C227" opacity="0.08"/>
+  <!-- Enchanted forest trees flanking record -->
+  <polygon points="120,760 170,420 220,760" fill="#0D0A00" opacity="0.7"/>
+  <polygon points="80,760 140,380 200,760"  fill="#0D0A00" opacity="0.65"/>
+  <polygon points="600,760 650,390 700,760" fill="#0D0A00" opacity="0.65"/>
+  <polygon points="580,760 640,420 700,760" fill="#0D0A00" opacity="0.7"/>
+  <!-- Dwarfs cottage lower left -->
+  <rect x="82" y="680" width="90" height="70" fill="#1A1000" stroke="#E2C227" stroke-width="1" opacity="0.6"/>
+  <polygon points="70,682 127,635 184,682" fill="#1A1000" stroke="#E2C227" stroke-width="1" opacity="0.6"/>
+  <rect x="112" y="698" width="26" height="38" fill="#0D0A00" opacity="0.7"/>
+  <rect x="86" y="690" width="20" height="18" rx="1" fill="#E2C227" opacity="0.1"/>
+  <!-- chimney smoke -->
+  <rect x="152" y="622" width="14" height="26" fill="#1A1000" stroke="#E2C227" stroke-width="0.8" opacity="0.55"/>
+  <path d="M159 622 Q162 606 157 592" fill="none" stroke="#E2C227" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+  <!-- Fantasia sorcerer hat above record — bolder -->
+  <polygon points="400,142 358,275 442,275" fill="#16165A" stroke="#E2C227" stroke-width="2" opacity="0.92"/>
+  <ellipse cx="400" cy="277" rx="48" ry="12" fill="#16165A" stroke="#E2C227" stroke-width="2" opacity="0.92"/>
+  <line x1="362" y1="254" x2="438" y2="254" stroke="#E2C227" stroke-width="1.8" opacity="0.75"/>
+  <path d="M382 180 L386 169 L390 180 L386 191 Z" fill="#E2C227" opacity="0.9"/>
+  <circle cx="410" cy="196" r="3.5" fill="#E2C227" opacity="0.85"/>
+  <path d="M374 210 L378 200 L382 210 L378 220 Z" fill="#E2C227" opacity="0.8"/>
+  <circle cx="415" cy="226" r="2.5" fill="#E2C227" opacity="0.75"/>
+  <!-- wand sparkles radiating from hat tip -->
+  <line x1="400" y1="155" x2="400" y2="120" stroke="#E2C227" stroke-width="1.5" opacity="0.55"/>
+  <line x1="400" y1="155" x2="428" y2="130" stroke="#E2C227" stroke-width="1.5" opacity="0.5"/>
+  <line x1="400" y1="155" x2="372" y2="130" stroke="#E2C227" stroke-width="1.5" opacity="0.5"/>
+  <line x1="400" y1="155" x2="432" y2="152" stroke="#E2C227" stroke-width="1.2" opacity="0.4"/>
+  <line x1="400" y1="155" x2="368" y2="152" stroke="#E2C227" stroke-width="1.2" opacity="0.4"/>
+  <circle cx="400" cy="118" r="3.5" fill="#E2C227" opacity="0.75"/>
+  <circle cx="430" cy="128" r="2.5" fill="#E2C227" opacity="0.65"/>
+  <circle cx="370" cy="128" r="2.5" fill="#E2C227" opacity="0.65"/>
   <!-- main record -->
-  <circle cx="400" cy="460" r="240" fill="#1A1200" stroke="#E2C227" stroke-width="2" opacity="0.9"/>
-  <circle cx="400" cy="460" r="210" fill="none" stroke="#E2C227" stroke-width="0.7" opacity="0.25"/>
-  <circle cx="400" cy="460" r="180" fill="none" stroke="#E2C227" stroke-width="0.6" opacity="0.2"/>
-  <circle cx="400" cy="460" r="150" fill="none" stroke="#E2C227" stroke-width="0.6" opacity="0.18"/>
-  <circle cx="400" cy="460" r="120" fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.15"/>
-  <circle cx="400" cy="460" r="90"  fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.12"/>
+  <circle cx="400" cy="560" r="220" fill="#1A1200" stroke="#E2C227" stroke-width="2" opacity="0.9"/>
+  <circle cx="400" cy="560" r="192" fill="none" stroke="#E2C227" stroke-width="0.7" opacity="0.22"/>
+  <circle cx="400" cy="560" r="164" fill="none" stroke="#E2C227" stroke-width="0.6" opacity="0.18"/>
+  <circle cx="400" cy="560" r="136" fill="none" stroke="#E2C227" stroke-width="0.6" opacity="0.15"/>
+  <circle cx="400" cy="560" r="108" fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.12"/>
+  <circle cx="400" cy="560" r="80"  fill="none" stroke="#E2C227" stroke-width="0.5" opacity="0.1"/>
   <!-- golden label -->
-  <circle cx="400" cy="460" r="70"  fill="#E2C227" opacity="0.9"/>
-  <circle cx="400" cy="460" r="48"  fill="#C0182A" opacity="0.85"/>
-  <!-- play icon -->
-  <path d="M388 443 L420 460 L388 477 Z" fill="#F7F0DC" opacity="0.9"/>
-  <!-- spindle -->
-  <circle cx="400" cy="460" r="14" fill="#1A1200"/>
-  <circle cx="400" cy="460" r="8"  fill="#100C00"/>
+  <circle cx="400" cy="560" r="65"  fill="#E2C227" opacity="0.88"/>
+  <circle cx="400" cy="560" r="44"  fill="#C0182A" opacity="0.85"/>
+  <path d="M388 543 L420 560 L388 577 Z" fill="#F7F0DC" opacity="0.9"/>
+  <circle cx="400" cy="560" r="13" fill="#1A1200"/>
   <!-- tonearm -->
-  <line x1="600" y1="200" x2="430" y2="430" stroke="#C8A010" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
-  <circle cx="600" cy="200" r="18" fill="#A07808" opacity="0.8"/>
-  <circle cx="425" cy="438" r="8" fill="#E2C227" opacity="0.9"/>
-  <!-- stardust sparkles -->
-  ${[[180,260],[620,280],[160,560],[640,550],[200,750],[600,730]].map(([x,y])=>`<path d="M${x} ${y-8} L${x+3} ${y-2} L${x+8} ${y} L${x+3} ${y+2} L${x} ${y+8} L${x-3} ${y+2} L${x-8} ${y} L${x-3} ${y-2} Z" fill="#E2C227" opacity="0.35"/>`).join('')}
-  <!-- bottom label text -->
+  <line x1="590" y1="310" x2="430" y2="530" stroke="#C8A010" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+  <circle cx="590" cy="310" r="17" fill="#A07808" opacity="0.8"/>
+  <circle cx="426" cy="536" r="8"  fill="#E2C227" opacity="0.9"/>
+  <!-- golden sparkle diamonds -->
+  <path d="M180 340 L183 330 L188 340 L183 350 Z" fill="#E2C227" opacity="0.4"/>
+  <path d="M620 360 L623 350 L628 360 L623 370 Z" fill="#E2C227" opacity="0.35"/>
+  <path d="M160 640 L163 630 L168 640 L163 650 Z" fill="#E2C227" opacity="0.38"/>
+  <path d="M640 620 L643 610 L648 620 L643 630 Z" fill="#E2C227" opacity="0.35"/>
+  <path d="M200 750 L203 742 L208 750 L203 758 Z" fill="#E2C227" opacity="0.32"/>
+  <path d="M600 730 L603 722 L608 730 L603 738 Z" fill="#E2C227" opacity="0.32"/>
+
+  <!-- Snow White silhouette — standing right of record, elegant pose -->
+  <!-- dress skirt — full and wide -->
+  <polygon points="598,780 560,620 636,620" fill="#16165A" opacity="0.55"/>
+  <!-- bodice -->
+  <rect x="568" y="580" width="56" height="48" rx="4" fill="#C0182A" opacity="0.48"/>
+  <!-- collar -->
+  <path d="M560 588 Q596 600 632 588" fill="#E2C227" opacity="0.38"/>
+  <!-- head -->
+  <circle cx="596" cy="558" r="24" fill="#E2C227" opacity="0.48"/>
+  <!-- hair bob -->
+  <path d="M572 552 Q565 570 572 585" fill="#1A1200" stroke="#1A1200" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M620 552 Q627 570 620 585" fill="#1A1200" stroke="#1A1200" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <!-- hair band -->
+  <path d="M572 548 Q596 538 620 548" fill="none" stroke="#E2C227" stroke-width="3" opacity="0.45"/>
+  <!-- arms out — welcoming gesture -->
+  <path d="M568 598 Q544 580 536 560" fill="none" stroke="#E2C227" stroke-width="9" stroke-linecap="round" opacity="0.42"/>
+  <path d="M624 598 Q648 582 658 562" fill="none" stroke="#C0182A" stroke-width="9" stroke-linecap="round" opacity="0.42"/>
+
+  <!-- Bambi silhouette — lower centre-left of record, looking up -->
+  <!-- body -->
+  <ellipse cx="205" cy="730" rx="36" ry="24" fill="#C8A010" opacity="0.38"/>
+  <!-- neck -->
+  <path d="M222 710 Q234 692 228 672" fill="none" stroke="#C8A010" stroke-width="16" stroke-linecap="round" opacity="0.38"/>
+  <!-- head -->
+  <circle cx="226" cy="660" r="20" fill="#C8A010" opacity="0.4"/>
+  <!-- ear left -->
+  <ellipse cx="214" cy="646" rx="8" ry="13" fill="#C8A010" opacity="0.38" transform="rotate(-20 214 646)"/>
+  <!-- ear right -->
+  <ellipse cx="240" cy="644" rx="8" ry="13" fill="#C8A010" opacity="0.38" transform="rotate(20 240 644)"/>
+  <!-- snout -->
+  <ellipse cx="232" cy="666" rx="7" ry="5" fill="#E8A050" opacity="0.3"/>
+  <!-- nose -->
+  <circle cx="234" cy="663" r="2.5" fill="#A06030" opacity="0.4"/>
+  <!-- front legs -->
+  <line x1="188" y1="752" x2="178" y2="790" stroke="#C8A010" stroke-width="10" stroke-linecap="round" opacity="0.35"/>
+  <line x1="210" y1="754" x2="205" y2="792" stroke="#C8A010" stroke-width="10" stroke-linecap="round" opacity="0.35"/>
+  <!-- back legs -->
+  <line x1="228" y1="752" x2="232" y2="792" stroke="#C8A010" stroke-width="10" stroke-linecap="round" opacity="0.32"/>
+  <line x1="248" y1="748" x2="256" y2="786" stroke="#C8A010" stroke-width="10" stroke-linecap="round" opacity="0.32"/>
+  <!-- white spots on back -->
+  <circle cx="210" cy="722" r="3" fill="#F7F0DC" opacity="0.22"/>
+  <circle cx="222" cy="714" r="2.5" fill="#F7F0DC" opacity="0.2"/>
+  <circle cx="234" cy="718" r="2" fill="#F7F0DC" opacity="0.18"/>
+  <!-- tail -->
+  <circle cx="240" cy="728" r="7" fill="#F7F0DC" opacity="0.22"/>
+
   <text x="400" y="850" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#E2C227" opacity="0.5" letter-spacing="6">GOLDEN AGE · 1937–1942</text>
 </svg>`)}`;
+
 
 const ERA_SCENE_SILVER = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -1055,6 +1357,71 @@ const ERA_SCENE_SILVER = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox=
   <circle cx="520" cy="485" r="2" fill="#7FA8C4" opacity="0.35"/>
   <circle cx="610" cy="500" r="2" fill="#7FA8C4" opacity="0.35"/>
   <circle cx="680" cy="510" r="2" fill="#7FA8C4" opacity="0.35"/>
+
+  <!-- Cinderella castle projected on the cinema screen — centre top section -->
+  <!-- castle glow backdrop on screen -->
+  <ellipse cx="400" cy="230" rx="210" ry="130" fill="#7FA8C4" opacity="0.06"/>
+  <!-- main keep base -->
+  <rect x="310" y="198" width="180" height="220" fill="#7FA8C4" opacity="0.28"/>
+  <!-- centre main spire — tallest -->
+  <polygon points="400,82 376,198 424,198" fill="#7FA8C4" opacity="0.65"/>
+  <line x1="400" y1="82" x2="400" y2="62" stroke="#7FA8C4" stroke-width="2" opacity="0.7"/>
+  <polygon points="400,62 413,74 400,86" fill="#7FA8C4" opacity="0.7"/>
+  <!-- two flanking towers centre -->
+  <rect x="286" y="148" width="56" height="90" fill="#7FA8C4" opacity="0.35"/>
+  <polygon points="314,98 296,148 332,148" fill="#7FA8C4" opacity="0.55"/>
+  <line x1="314" y1="98" x2="314" y2="82" stroke="#7FA8C4" stroke-width="1.5" opacity="0.62"/>
+  <rect x="458" y="148" width="56" height="90" fill="#7FA8C4" opacity="0.35"/>
+  <polygon points="486,98 468,148 504,148" fill="#7FA8C4" opacity="0.55"/>
+  <line x1="486" y1="98" x2="486" y2="82" stroke="#7FA8C4" stroke-width="1.5" opacity="0.62"/>
+  <!-- outer short turrets -->
+  <rect x="240" y="188" width="46" height="70" fill="#7FA8C4" opacity="0.25"/>
+  <polygon points="263,152 248,188 278,188" fill="#7FA8C4" opacity="0.44"/>
+  <rect x="514" y="188" width="46" height="70" fill="#7FA8C4" opacity="0.25"/>
+  <polygon points="537,152 522,188 552,188" fill="#7FA8C4" opacity="0.44"/>
+  <!-- castle arch gateway -->
+  <path d="M358 418 Q400 390 442 418" fill="#0A1828" opacity="0.5"/>
+  <rect x="368" y="380" width="64" height="38" fill="#0A1828" opacity="0.45"/>
+  <!-- castle windows — glowing -->
+  <rect x="332" y="215" width="22" height="26" rx="11" fill="#7FA8C4" opacity="0.2"/>
+  <rect x="446" y="215" width="22" height="26" rx="11" fill="#7FA8C4" opacity="0.2"/>
+  <rect x="386" y="220" width="28" height="32" rx="14" fill="#7FA8C4" opacity="0.18"/>
+  <!-- reflection shimmer on screen -->
+  <line x1="88" y1="418" x2="712" y2="418" stroke="#7FA8C4" stroke-width="0.5" opacity="0.08"/>
+
+  <!-- Tinker Bell silhouette — flying upper right near screen -->
+  <!-- body -->
+  <ellipse cx="660" cy="118" rx="10" ry="14" fill="#7FA8C4" opacity="0.62"/>
+  <!-- head -->
+  <circle cx="660" cy="100" r="10" fill="#7FA8C4" opacity="0.65"/>
+  <!-- bun on head -->
+  <circle cx="664" cy="92"  r="5" fill="#7FA8C4" opacity="0.6"/>
+  <!-- wings -->
+  <ellipse cx="678" cy="114" rx="18" ry="9" fill="#7FA8C4" opacity="0.28" transform="rotate(-30 678 114)"/>
+  <ellipse cx="643" cy="114" rx="18" ry="9" fill="#7FA8C4" opacity="0.28" transform="rotate(30 643 114)"/>
+  <!-- dress flare -->
+  <polygon points="652,130 660,152 668,130" fill="#7FA8C4" opacity="0.55"/>
+  <!-- legs -->
+  <line x1="656" y1="150" x2="651" y2="166" stroke="#7FA8C4" stroke-width="2" opacity="0.45"/>
+  <line x1="664" y1="150" x2="669" y2="166" stroke="#7FA8C4" stroke-width="2" opacity="0.45"/>
+  <!-- wand sparkle trail -->
+  <circle cx="640" cy="108" r="3"   fill="#7FA8C4" opacity="0.7"/>
+  <circle cx="628" cy="118" r="2"   fill="#7FA8C4" opacity="0.55"/>
+  <circle cx="618" cy="132" r="1.5" fill="#7FA8C4" opacity="0.4"/>
+  <circle cx="614" cy="148" r="1"   fill="#7FA8C4" opacity="0.3"/>
+  <!-- pixie dust arc -->
+  <path d="M638 110 Q610 140 600 170" fill="none" stroke="#7FA8C4" stroke-width="1" stroke-dasharray="3 4" opacity="0.35"/>
+
+  <!-- Peter Pan shadow silhouette lower left flying -->
+  <ellipse cx="148" cy="458" rx="24" ry="14" fill="#7FA8C4" opacity="0.38"/>
+  <circle  cx="148" cy="440" r="14" fill="#7FA8C4" opacity="0.4"/>
+  <polygon points="140,422 148,402 156,422" fill="#7FA8C4" opacity="0.38"/>
+  <!-- cape sweep -->
+  <path d="M124 462 Q108 480 118 498" fill="none" stroke="#7FA8C4" stroke-width="6" stroke-linecap="round" opacity="0.32"/>
+  <!-- shooting star beside Peter Pan -->
+  <line x1="180" y1="388" x2="240" y2="350" stroke="#7FA8C4" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="180" cy="388" r="2.5" fill="#7FA8C4" opacity="0.7"/>
+
   <text x="400" y="870" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#7FA8C4" opacity="0.5" letter-spacing="6">SILVER AGE · 1950–1967</text>
 </svg>`)}`;
 
@@ -1069,6 +1436,36 @@ const ERA_SCENE_BRONZE = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox=
   <circle cx="380" cy="50"  r="1.5" fill="#E8641A" opacity="0.5"/>
   <circle cx="620" cy="80"  r="2"   fill="#A07040" opacity="0.7"/>
   <circle cx="250" cy="130" r="1.5" fill="#E8641A" opacity="0.4"/>
+  <!-- Aristocats cat silhouettes top left — duchess with kittens -->
+  <!-- Duchess -->
+  <ellipse cx="130" cy="140" rx="28" ry="18" fill="#E8641A" opacity="0.48"/>
+  <circle cx="148" cy="124" r="17" fill="#E8641A" opacity="0.5"/>
+  <polygon points="142,110 138,92 150,106" fill="#E8641A" opacity="0.48"/>
+  <polygon points="153,108 156,90 162,105" fill="#E8641A" opacity="0.48"/>
+  <!-- kitten left -->
+  <circle cx="95" cy="148" r="11" fill="#A07040" opacity="0.42"/>
+  <polygon points="90,138 88,126 96,136" fill="#A07040" opacity="0.42"/>
+  <polygon points="100,136 102,124 107,135" fill="#A07040" opacity="0.42"/>
+  <!-- kitten right -->
+  <circle cx="175" cy="152" r="11" fill="#C8A010" opacity="0.42"/>
+  <polygon points="170,142 168,130 176,140" fill="#C8A010" opacity="0.42"/>
+  <polygon points="180,140 182,128 187,139" fill="#C8A010" opacity="0.42"/>
+  <!-- Robin Hood archer silhouette top right — bow raised -->
+  <ellipse cx="640" cy="132" rx="22" ry="15" fill="#A07040" opacity="0.45"/>
+  <circle cx="655" cy="116" r="14" fill="#A07040" opacity="0.48"/>
+  <!-- fox ears -->
+  <polygon points="650,104 647,88 658,102" fill="#A07040" opacity="0.45"/>
+  <polygon points="659,102 660,86 668,100" fill="#A07040" opacity="0.45"/>
+  <!-- bow -->
+  <path d="M685 100 Q710 120 685 148" fill="none" stroke="#C8A010" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <line x1="685" y1="100" x2="685" y2="148" stroke="#C8A010" stroke-width="1.2" opacity="0.4"/>
+  <!-- arrow -->
+  <line x1="665" y1="124" x2="710" y2="124" stroke="#E8641A" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+  <polygon points="710,124 702,119 702,129" fill="#E8641A" opacity="0.55"/>
+  <!-- hat on robin hood -->
+  <ellipse cx="660" cy="106" rx="18" ry="5" fill="#2A5020" opacity="0.5"/>
+  <rect x="646" y="96" width="28" height="12" rx="2" fill="#2A5020" opacity="0.5"/>
+  <path d="M670 98 Q676 90 672 84" fill="none" stroke="#E8641A" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
   <ellipse cx="400" cy="530" rx="300" ry="38" fill="#0A0500" opacity="0.7"/>
   <circle  cx="400" cy="480" r="270" fill="#160D00" stroke="#A07040" stroke-width="2.5" opacity="0.95"/>
   <circle cx="400" cy="480" r="240" fill="none" stroke="#A07040" stroke-width="0.7" opacity="0.12"/>
@@ -1110,6 +1507,50 @@ const ERA_SCENE_BRONZE = `data:image/svg+xml,${encodeURIComponent(`<svg viewBox=
   <line x1="318" y1="752" x2="308" y2="735" stroke="#A07040" stroke-width="1" opacity="0.4"/>
   <line x1="318" y1="752" x2="328" y2="735" stroke="#A07040" stroke-width="1" opacity="0.4"/>
   <rect x="420" y="720" width="210" height="130" rx="10" fill="#0E0800" stroke="#E8641A" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Jungle Book — Baloo the bear dancing silhouette lower left of record -->
+  <!-- Baloo body — large round bear -->
+  <ellipse cx="155" cy="620" rx="52" ry="42" fill="#A07040" opacity="0.42"/>
+  <!-- head -->
+  <circle cx="182" cy="582" r="34" fill="#A07040" opacity="0.44"/>
+  <!-- round bear ears -->
+  <circle cx="165" cy="556" r="12" fill="#A07040" opacity="0.42"/>
+  <circle cx="197" cy="552" r="12" fill="#A07040" opacity="0.42"/>
+  <!-- bear snout -->
+  <ellipse cx="192" cy="588" rx="12" ry="8" fill="#C89060" opacity="0.35"/>
+  <!-- arm raised (dancing) -->
+  <path d="M200 600 Q230 570 220 545" fill="none" stroke="#A07040" stroke-width="18" stroke-linecap="round" opacity="0.42"/>
+  <!-- other arm out -->
+  <path d="M110 612 Q82 600 78 575" fill="none" stroke="#A07040" stroke-width="14" stroke-linecap="round" opacity="0.38"/>
+  <!-- feet -->
+  <ellipse cx="128" cy="662" rx="18" ry="10" fill="#A07040" opacity="0.38"/>
+  <ellipse cx="178" cy="668" rx="18" ry="10" fill="#A07040" opacity="0.38"/>
+
+  <!-- Mowgli silhouette — small boy beside Baloo -->
+  <ellipse cx="228" cy="648" rx="16" ry="12" fill="#E8641A" opacity="0.5"/>
+  <circle  cx="232" cy="628" r="13" fill="#E8641A" opacity="0.52"/>
+  <!-- arms up dancing -->
+  <path d="M220 638 Q205 622 208 608" fill="none" stroke="#E8641A" stroke-width="7" stroke-linecap="round" opacity="0.45"/>
+  <path d="M242 638 Q258 622 255 608" fill="none" stroke="#E8641A" stroke-width="7" stroke-linecap="round" opacity="0.45"/>
+  <!-- legs -->
+  <line x1="224" y1="660" x2="218" y2="684" stroke="#E8641A" stroke-width="8" stroke-linecap="round" opacity="0.45"/>
+  <line x1="236" y1="660" x2="242" y2="684" stroke="#E8641A" stroke-width="8" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- tropical leaves around record — Jungle Book foliage -->
+  <path d="M80 400 Q60 360 100 340 Q90 380 120 390 Z" fill="#1A3010" opacity="0.55"/>
+  <path d="M100 420 Q72 390 104 362 Q100 400 136 406 Z" fill="#0E2008" opacity="0.5"/>
+  <path d="M680 390 Q720 360 700 335 Q710 374 676 382 Z" fill="#1A3010" opacity="0.55"/>
+  <path d="M660 415 Q700 390 696 355 Q700 394 664 400 Z" fill="#0E2008" opacity="0.5"/>
+
+  <!-- Winnie the Pooh honey pot on the record label -->
+  <rect x="378" y="464" width="44" height="36" rx="6" fill="#E8641A" opacity="0.55"/>
+  <ellipse cx="400" cy="464" rx="22" ry="7" fill="#C86010" opacity="0.6"/>
+  <ellipse cx="400" cy="500" rx="22" ry="7" fill="#C86010" opacity="0.5"/>
+  <!-- honey drip -->
+  <path d="M412 500 Q414 508 412 514" fill="none" stroke="#C8A010" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <!-- "hunny" label -->
+  <rect x="383" y="474" width="34" height="16" rx="2" fill="#FAE8A0" opacity="0.18"/>
+
   <text x="400" y="870" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#A07040" opacity="0.5" letter-spacing="6">BRONZE AGE · 1970–1988</text>
 </svg>`)}`;
 
